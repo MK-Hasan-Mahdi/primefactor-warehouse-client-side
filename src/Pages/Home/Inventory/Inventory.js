@@ -15,7 +15,7 @@ const Product = ({ product }) => {
                     <p className="card-text">Supplier: {supplier}</p>
                 </div>
                 <div className='d-flex flex-column justify-content-center'>
-                    <button className='btn btn-dark rounded-3 py-2 my-1 buy-btn'>Manage</button>
+                    <button className='btn btn-primary rounded-3 py-2 my-1 buy-btn'>Manage</button>
                 </div>
             </div>
         </div>
