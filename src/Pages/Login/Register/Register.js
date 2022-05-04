@@ -1,6 +1,8 @@
+import { async } from '@firebase/util';
+import { sendEmailVerification } from 'firebase/auth';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
 const Register = () => {
@@ -12,13 +14,26 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-    const handleRegister = (event) => {
+    const [sendEmailVerification, sending, error2] = useSendEmailVerification(auth);
+
+    const sendVerifyEmail = async () => {
+        await sendEmailVerification(auth.currentUser)
+            .then(() => {
+                alert("verification email sent")
+            })
+    }
+
+
+    const handleRegister = async (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        createUserWithEmailAndPassword(email, password)
+        await createUserWithEmailAndPassword(email, password);
+        sendVerifyEmail();
     }
+
+
     return (
         <div className='container'>
             <h2 className='text-center'>Please Register</h2>
