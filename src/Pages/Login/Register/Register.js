@@ -1,57 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
-
-const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
-
+const Register = () => {
 
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
 
-    // const handleEmailBlur = (event) => {
-    //     setEmail(event.target.value);
-    // }
-    // const handlePasswordBlur = (event) => {
-    //     setPassword(event.target.value);
-    // }
-
-    const handleUserLogin = (event) => {
+    const handleRegister = (event) => {
         event.preventDefault();
+        const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        signInWithEmailAndPassword(email, password);
-
-        console.log(email);
-        console.log(password);
+        createUserWithEmailAndPassword(email, password)
     }
-
-    if (user) {
-        return (
-            <div>
-                <p>Signed In User: {user.email}</p>
-            </div>
-        );
-    }
-
-    const navigateRegister = () => {
-        navigate('/register');
-    }
-
     return (
         <div className='container'>
-            <h2 className='text-center'>Please Login</h2>
+            <h2 className='text-center'>Please Register</h2>
             <div className='w-50 mx-auto'>
-                <Form onSubmit={handleUserLogin}>
+                <Form onSubmit={handleRegister}>
+                    <Form.Group className="mb-3" controlId="formBasicName">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" name='name' placeholder="Your Name" />
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name='email' placeholder="Enter email" />
@@ -65,13 +41,12 @@ const Login = () => {
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
                     <Button variant="primary mx-auto d-block w-50" type="submit">
-                        Login
+                        Register
                     </Button>
                 </Form>
-                <p>New User? <Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister}>Register Now</Link></p>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;
