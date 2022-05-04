@@ -18,17 +18,15 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    // const handleEmailBlur = (event) => {
-    //     setEmail(event.target.value);
-    // }
-    // const handlePasswordBlur = (event) => {
-    //     setPassword(event.target.value);
-    // }
+    const handleEmailBlur = (event) => {
+        setEmail(event.target.value);
+    }
+    const handlePasswordBlur = (event) => {
+        setPassword(event.target.value);
+    }
 
     const handleUserLogin = (event) => {
         event.preventDefault();
-        const email = event.target.email.value;
-        const password = event.target.password.value;
         signInWithEmailAndPassword(email, password);
 
         console.log(email);
@@ -36,11 +34,7 @@ const Login = () => {
     }
 
     if (user) {
-        return (
-            <div>
-                <p>Signed In User: {user.email}</p>
-            </div>
-        );
+        navigate('/home')
     }
 
     const navigateRegister = () => {
@@ -54,12 +48,12 @@ const Login = () => {
                 <Form onSubmit={handleUserLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name='email' placeholder="Enter email" />
+                        <Form.Control onBlur={handleEmailBlur} type="email" name='email' placeholder="Enter email" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name='password' placeholder="Password" />
+                        <Form.Control onBlur={handlePasswordBlur} type="password" name='password' placeholder="Password" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" />

@@ -1,11 +1,13 @@
-import { async } from '@firebase/util';
-import { sendEmailVerification } from 'firebase/auth';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
+    const navigate = useNavigate();
 
     const [
         createUserWithEmailAndPassword,
@@ -15,11 +17,10 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
     const [sendEmailVerification, sending, error2] = useSendEmailVerification(auth);
-
     const sendVerifyEmail = async () => {
         await sendEmailVerification(auth.currentUser)
             .then(() => {
-                alert("verification email sent")
+                toast("Verification email sent")
             })
     }
 
@@ -29,10 +30,23 @@ const Register = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        await createUserWithEmailAndPassword(email, password);
-        sendVerifyEmail();
-    }
+        if (!name || !email || !password) {
+            alert("please fill up all section")
+        }
+        else {
 
+            await createUserWithEmailAndPassword(email, password);
+            sendVerifyEmail();
+            event.target.reset();
+        }
+    }
+    // if (user) {
+    //     navigate('/home')
+    // }
+
+    const navigateLogin = () => {
+        navigate('/login')
+    }
 
     return (
         <div className='container'>
@@ -55,11 +69,16 @@ const Register = () => {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
-                    <Button variant="primary mx-auto d-block w-50" type="submit">
+                    <Button variant="primary rounded-pill mx-auto d-block w-50" type="submit">
                         Register
                     </Button>
                 </Form>
+                <div className='text-center pt-4'>
+                    <p>Already have an account? <Link to='/login' className='text-primary text-decoration-none' onClick={navigateLogin}>Login</Link></p>
+                </div>
             </div>
+
+            <ToastContainer />
         </div>
     );
 };
