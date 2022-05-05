@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const [
         signInWithEmailAndPassword,
@@ -32,9 +34,15 @@ const Login = () => {
         console.log(email);
         console.log(password);
     }
-
+    if (loading) {
+        return <Loading></Loading>
+    }
+    let errorMessage;
+    if (error) {
+        errorMessage = <p className='text-danger'>Error: {error?.message}</p>
+    }
     if (user) {
-        navigate('/home')
+        navigate(from, { replace: true });
     }
 
     const navigateRegister = () => {
@@ -61,6 +69,7 @@ const Login = () => {
                     <Button variant="primary mx-auto d-block w-50" type="submit">
                         Login
                     </Button>
+                    {errorMessage}
                 </Form>
                 <p>New User? <Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister}>Register Now</Link></p>
             </div>
