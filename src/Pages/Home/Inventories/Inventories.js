@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Inventory from '../Inventory/Inventory';
 
-const Products = () => {
-    const [products, setProducts] = useState([]);
+const Inventories = () => {
+    const [inventories, setInventories] = useState([]);
     useEffect(() => {
-        fetch('data.json')
+        fetch('http://localhost:5000/inventory')
             .then(res => res.json())
-            .then(data => setProducts(data));
+            .then(data => setInventories(data));
     }, [])
     return (
         <div className='container'>
-            <h2>Total products</h2>
+            <h2>Total Inventory</h2>
             <div className='row'>
                 {
-                    products.map(product => <Inventory
-                        key={product.id}
-                        product={product}
+                    inventories.map(inventory => <Inventory
+                        key={inventory._id}
+                        inventory={inventory}
                     ></Inventory>)
                 }
             </div>
@@ -23,4 +23,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default Inventories;
