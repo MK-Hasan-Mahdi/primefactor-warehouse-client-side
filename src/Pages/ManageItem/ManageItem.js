@@ -3,11 +3,20 @@ import { Table } from 'react-bootstrap';
 import useInventories from '../../hooks/useInventories';
 
 const ManageItem = () => {
-    const [inventories] = useInventories();
+    const [inventories, setInventories] = useInventories();
     const handleDeleteItem = (id) => {
-        const proceedDelete = alert('confirm delete');
+        const proceedDelete = window.confirm('confirm delete');
         if (proceedDelete) {
-
+            const url = `http://localhost:5000/inventory/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const remainingItem = inventories.filter(inventory => inventory._id !== id);
+                    setInventories(remainingItem);
+                })
         }
     }
     return (
