@@ -6,6 +6,7 @@ import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 
 const Login = () => {
@@ -79,7 +80,7 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
-                    <Button variant="primary rounded-pill mx-auto d-block w-50" type="submit">
+                    <Button variant="outline-primary rounded-pill mx-auto d-block w-50" type="submit">
                         Login
                     </Button>
                     {errorMessage}
@@ -87,6 +88,7 @@ const Login = () => {
                 <p>New User? <Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister}>Register Now</Link></p>
                 <p>Forget Password? <button className='btn btn-link text-primary text-decoration-none pe-auto' onClick={resetPassword}>Reset Your Password</button></p>
             </div>
+            <SocialLogin></SocialLogin>
             <ToastContainer />
         </div>
     );

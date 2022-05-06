@@ -8,10 +8,11 @@
 - React Firebase Hooks
 - React Bootstrap
 - Firebase
-- 
+- React Hook Form
 - React Toast
 - Not found image/404 page 
 - ES6 features
+- React Icons
 
 ## 🛠 Skills
 Javascript, HTML, CSS, Bootstrap, Tailwind, React, Firebase, Mongodb...
