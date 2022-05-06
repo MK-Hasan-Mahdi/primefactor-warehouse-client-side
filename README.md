@@ -11,7 +11,7 @@
 - React Hook Form
 - React Toast
 - Not found image/404 page 
-- ES6 features
+- Mongodb
 - React Icons
 
 ## 🛠 Skills
