@@ -6,19 +6,18 @@ const Banner = () => {
         <div>
             <section id="hero" className="d-flex align-items-center">
 
-                <div className="container" data-aos="zoom-out" data-aos-delay="100">
+                <div className="container">
                     <div className="row">
                         <div className="col-xl-6">
-                            <h1>Bettter experience with primefactor car bike </h1>
-                            <h3>Range Rover</h3>
-                            <h2>We are team of talented designers making websites with Bootstrap</h2>
-                            <a href="#about" className="btn-get-started scrollto">Get Started</a>
+                            <h1>Bettter experience with Primefactor Car Bike </h1>
+                            <h2>Excellent Car and Bike Warehouse</h2>
+                            <button className="btn-get-started scrollto">More Info</button>
                         </div>
                     </div>
                 </div>
 
-            </section>
-        </div>
+            </section >
+        </div >
     );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import { SiGmail } from 'react-icons/si'
@@ -12,6 +12,8 @@ const SocialLogin = () => {
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
     const [signInWithGithub, userGithub, loadingGithub, errorGithub] = useSignInWithGithub(auth);
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     let errorMessage;
     if (errorGoogle || errorGithub) {
@@ -23,7 +25,7 @@ const SocialLogin = () => {
     }
 
     if (userGoogle || userGithub) {
-        navigate("/home");
+        navigate(from, { replace: true });
     }
     return (
         <div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Inventory.css';
 
 const Inventory = ({ inventory }) => {
     const { _id, name, img, price, quantity, description, supplier } = inventory;
@@ -19,7 +20,7 @@ const Inventory = ({ inventory }) => {
                     <p className="card-text">Supplier: {supplier}</p>
                 </div>
                 <div className='d-flex flex-column justify-content-center'>
-                    <button onClick={() => navigateToInventoryDetail(_id)} className='btn btn-primary rounded-3 py-2 my-1 buy-btn'>Manage</button>
+                    <button onClick={() => navigateToInventoryDetail(_id)} className='btn-get-started rounded-3 py-2 my-1 buy-btn'>Manage</button>
                 </div>
             </div>
         </div>
