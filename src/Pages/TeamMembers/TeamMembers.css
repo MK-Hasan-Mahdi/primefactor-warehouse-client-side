@@ -52,14 +52,14 @@
     text-align: center;
 }
 
-.team .member .social a {
+.team .member .social span {
     transition: color 0.3s;
     color: #fff;
     margin: 0 10px;
     display: inline-block;
 }
 
-.team .member .social a:hover {
+.team .member .social span:hover {
     color: #428bca;
 }
 

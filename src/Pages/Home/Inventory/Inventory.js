@@ -10,9 +10,9 @@ const Inventory = ({ inventory }) => {
     }
     return (
         <div className='col-sm-12 col-md-6 col-lg-4'>
-            <div className="card">
+            <div className="card h-100">
                 <div className="card-body py-3">
-                    <img src={img} className="card-img-top w-100 rounded-3" alt="..."></img>
+                    <img src={img} className="card-img-top card-image w-100 rounded-3" alt="..."></img>
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{description}</p>
                     <p className="card-text">Price: {price}</p>

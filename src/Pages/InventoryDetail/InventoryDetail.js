@@ -15,15 +15,22 @@ const InventoryDetail = () => {
 
     }, []);
 
+    // inventory item's stock update
     const handleQtyUpdate = event => {
         event.preventDefault();
         const qty = event.target.inputQuantity.value;
         console.log(qty);
-
-
         const newQuantity = parseInt(inventory.quantity) + parseInt(qty);
-        const newQuantityObj = { name: name, description: description, price: price, quantity: newQuantity, img: img };
+        const newQuantityObj =
+        {
+            name: name,
+            description: description,
+            price: price,
+            quantity: newQuantity,
+            img: img
+        };
         console.log(newQuantityObj);
+        setInventory(newQuantityObj);
 
         const url = `http://localhost:5000/inventory/${inventoryId}`
         fetch(url, {
@@ -38,10 +45,34 @@ const InventoryDetail = () => {
                 console.log('success', data);
                 event.target.reset();
             })
-        // event.target.reset()
-
     }
 
+    // invetory item's stock deliver/shipment
+    const handleShippedItem = () => {
+        // console.log('shipped');
+        const newInvItemQuantity = quantity - 1;
+        const newInventory = {
+            name: name,
+            description: description,
+            price: price,
+            quantity: newInvItemQuantity,
+            img: img
+        };
+        setInventory(newInventory);
+
+        const url = `http://localhost:5000/inventory/${inventoryId}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newInventory)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('success', data);
+            })
+    }
 
 
 
@@ -64,7 +95,7 @@ const InventoryDetail = () => {
                     </ul>
                     <div className="card-body">
                         <div className='d-flex  justify-content-center'>
-                            <button className='btn btn-primary rounded-3 py-2 my-1 buy-btn'>Delivered</button>
+                            <button onClick={handleShippedItem} className='btn btn-primary rounded-3 py-2 my-1 buy-btn'>Shipped</button>
                         </div>
                     </div>
 

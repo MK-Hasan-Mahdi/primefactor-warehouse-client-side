@@ -6,7 +6,7 @@ const Banner = () => {
         <div>
             <section id="hero" className="d-flex align-items-center">
 
-                <div className="container">
+                <div className="container" data-aos="fade-up">
                     <div className="row">
                         <div className="col-xl-6">
                             <h1>Bettter experience with Primefactor Car Bike </h1>

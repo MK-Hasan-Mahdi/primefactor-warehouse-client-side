@@ -17,9 +17,9 @@ const Inventories = () => {
     }
     return (
         <div className='back-color'>
-            <div className='container' id='inventory'>
+            <div className='container' id='inventory' data-aos="fade-up">
                 <h2 className='title-heading text-center p-5'>Inventory Item</h2>
-                <div className='row'>
+                <div className='row g-4'>
                     {
                         inventories.slice(0, 6).map(inventory => <Inventory
                             key={inventory._id}
@@ -27,8 +27,8 @@ const Inventories = () => {
                         ></Inventory>)
                     }
                 </div>
-                <div className='text-center mb-3'>
-                    <button onClick={handleAllInventory} className='btn btn-primary btn-lg'>Manage all Inventory</button>
+                <div className='m-5 pb-2 col-md-12 text-center'>
+                    <button onClick={handleAllInventory} className='btn-get-started rounded-3 py-2 my-1 buy-btn'>Manage all Inventory</button>
                 </div>
             </div>
         </div>
