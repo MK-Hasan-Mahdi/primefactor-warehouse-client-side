@@ -1,6 +1,6 @@
 # primefactor warehouse system
 
-### Live Site Link : [primefactor](https://primefactor-8a8c8.web.app/).
+### Live Site Link : [primefactor](https://primefactor-8a8c8.web.app/)
 
 ## Used Features
 
@@ -8,11 +8,11 @@
 - React Firebase Hooks
 - React Bootstrap
 - Firebase
+- Mongodb
 - React Hook Form
 - React Toast
-- Not found image/404 page 
-- Mongodb
-- React Icons
+- Axios
+- React Icons, Sweet Alert
 
 ## 🛠 Skills
 Javascript, HTML, CSS, Bootstrap, Tailwind, React, Firebase, Mongodb...
