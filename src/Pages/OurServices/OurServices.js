@@ -22,25 +22,25 @@ const OurServices = () => {
                         </div>
 
                         <div className="col-sm-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                            <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                            <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+                            <h3>Our Software base fits into the supply chain, Faster implementation</h3>
+                            <p>The supply chain can operate only as quickly, accurately and efficiently as warehouse processes permit. Vital role in supply chain management by managing order fulfillment processes, from receiving our imported cars and bike to shipping.</p>
 
                             <div className="icon-box">
                                 <div className="icon"><span> <AiFillCar></AiFillCar> </span></div>
                                 <h4 className="title">Excellent Car Stock</h4>
-                                <p className="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                                <p className="description">Tesla, we also import this largest automaker designs, manufactures, and sells electric vehicles company's car.</p>
                             </div>
 
                             <div className="icon-box">
                                 <div className="icon"><span> <RiMotorbikeFill></RiMotorbikeFill> </span></div>
                                 <h4 className="title">Updated Bike Stock</h4>
-                                <p className="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                                <p className="description">Harli Davidson, Bajaj, Bennett, Benelli, Apprillia all types of updated and restock bike from aroun the world. </p>
                             </div>
 
                             <div className="icon-box">
                                 <div className="icon"><span> <FaBusAlt></FaBusAlt> </span></div>
                                 <h4 className="title">Coming Soon Bus Stock</h4>
-                                <p className="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                                <p className="description">We are arriving new collection CX45E crafted bus stock, emphasis on quality leading electric exceed expectations.</p>
                             </div>
 
                         </div>
