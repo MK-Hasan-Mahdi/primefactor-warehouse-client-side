@@ -1,4 +1,4 @@
-# primefactor
+# primefactor warehouse system
 
 ### Live Site Link : [primefactor](https://primefactor-8a8c8.web.app/).
 
