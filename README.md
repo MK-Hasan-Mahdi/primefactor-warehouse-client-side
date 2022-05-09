@@ -1,6 +1,6 @@
 # primefactor
 
-### Live Site Link : [primefactor]().
+### Live Site Link : [primefactor]('https://primefactor-8a8c8.web.app/').
 
 ## Used Features
 
