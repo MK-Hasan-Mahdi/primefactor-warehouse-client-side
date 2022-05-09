@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import swal from 'sweetalert';
+
 
 const MyItem = () => {
     const [user] = useAuthState(auth);
@@ -22,6 +24,13 @@ const MyItem = () => {
     // handle cancel/delete by user
     const handleDeleteItem = (id) => {
         const proceedDelete = window.confirm('confirm delete?');
+        // alert msg
+        swal({
+            title: "Done!",
+            text: "Shipped from stock",
+            icon: "success",
+            button: "OK",
+        });
         if (proceedDelete) {
             const url = `https://warm-island-25044.herokuapp.com/myitem/${id}`;
             fetch(url, {
@@ -48,8 +57,6 @@ const MyItem = () => {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Qty</th>
-                            <th>Supplier</th>
-                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>

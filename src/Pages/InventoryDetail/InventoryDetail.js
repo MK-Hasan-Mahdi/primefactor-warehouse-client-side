@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import swal from 'sweetalert';
 
 const InventoryDetail = () => {
     const { inventoryId } = useParams();
@@ -23,9 +22,20 @@ const InventoryDetail = () => {
         const qty = event.target.inputQuantity.value;
         // console.log(qty);
         if (qty <= 0) {
-            toast('give valid qty')
+            swal({
+                title: "Warning!",
+                text: "Please give valid quantity!",
+                icon: "warning",
+                button: "OK",
+            });
         }
         else {
+            swal({
+                title: "Done!",
+                text: "Increased stock quantity",
+                icon: "success",
+                button: "OK",
+            });
 
             const newQuantity = parseInt(inventory.quantity) + parseInt(qty);
             const newQuantityObj =
@@ -65,6 +75,7 @@ const InventoryDetail = () => {
             description: description,
             price: price,
             quantity: newInvItemQuantity,
+            supplier: supplier,
             img: img
         };
         setInventory(newInventory);
@@ -80,14 +91,21 @@ const InventoryDetail = () => {
             .then(res => res.json())
             .then(data => {
                 console.log('success', data);
-            })
+            });
+        // alert msg
+        swal({
+            title: "Done!",
+            text: "Shipped from stock",
+            icon: "success",
+            button: "OK",
+        });
     }
 
 
 
     return (
         <div className='container'>
-            <h2 className='text-center mt-1'>Inventory Item Detail</h2>
+            <h2 className='text-center mt-1'>INVENTORY ITEM DETAIL</h2>
             <div className='d-flex m-4 justify-content-center'>
                 <div className="card" style={{ width: "50rem" }}>
                     <img src={inventory.img} className="card-img-top" alt="" />
@@ -104,14 +122,15 @@ const InventoryDetail = () => {
                     </ul>
                     <div className="card-body">
                         <div className='d-flex  justify-content-center'>
-                            <button onClick={handleShippedItem} className='btn btn-primary rounded-3 py-2 my-1 buy-btn'>Shipped</button>
+                            <button onClick={handleShippedItem} className='btn-get-started rounded-3 py-2 my-1 '>Shipped</button>
                         </div>
                     </div>
 
-                    <div>
+                    <div className='text-center'>
                         <form onSubmit={handleQtyUpdate}>
                             <input type="number" name='inputQuantity' placeholder='Quantity' />
                             <input type="submit" value="Restock" />
+                            {/* <button>Restock</button> */}
                         </form>
                     </div>
 
