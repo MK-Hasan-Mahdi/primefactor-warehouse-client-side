@@ -1,38 +1,79 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+// import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+// import { useForm } from 'react-hook-form';
+// import { useParams } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AddItem = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        // console.log(data);
+    const [user] = useAuthState(auth);
+    // console.log(user);
+    // const { inventoryId } = useParams();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const newInvetoryItem = {
+            name: event.target.name.value,
+            price: event.target.price.value,
+            description: event.target.description.value,
+            quantity: event.target.quantity.value,
+            img: event.target.img.value,
+        };
+        //<===== UPLOAD CAR ====>
         const url = `http://localhost:5000/inventory`;
         fetch(url, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'content-type': 'application/json'
+                "content-type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(newInvetoryItem),
         })
-            .then(res => res.json())
-            .then(output => {
-                console.log(output);
-            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                toast.success("car added succsessfully");
+            });
 
+        //<=====my items ====>
+        const myItem = {
+            email: user.email,
+            name: event.target.name.value,
+            price: event.target.price.value,
+            description: event.target.description.value,
+            quantity: event.target.quantity.value,
+            img: event.target.img.value,
+        };
+        const myItemurl = `http://localhost:5000/myitem`;
+        fetch(myItemurl, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(myItem),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            });
+        event.target.reset();
     };
+
     return (
         <div className='mx-auto w-50'>
-            <h2 className='text-center mt-2'>Add New Inventory Item</h2>
-            <form className='d-flex flex-column my-5 mb-2' onSubmit={handleSubmit(onSubmit)}>
-                <input placeholder='Item Name' className='mb-2' {...register("name", { required: true, maxLength: 20 })} />
-                <textarea placeholder='Description' className='mb-2' {...register("description")} />
-                <input placeholder='Price' className='mb-2' type="number" {...register("price")} />
-                <input placeholder='Quantity' className='mb-2' type="number" {...register("quantity")} />
-                <input placeholder='Supplier' className='mb-2' type="text" {...register("supplier")} />
-                <input placeholder='Photo URL' className='mb-2' type="text" {...register("img")} />
-                <input type="submit" value="Add Item" />
+            <h2 className='text-center mt-2'>ADD NEW INVENTORY</h2>
+            <form className=" form-field d-flex flex-column" onSubmit={handleSubmit}>
+                <input className="form-field d-flex align-items-center" placeholder="Item Name" name="name" />
+                <textarea className="form-field d-flex align-items-center" placeholder="Description" required name="description" />
+                <input className="form-field d-flex align-items-center" placeholder="Price" type="number" required name="price" />
+                <input className="form-field d-flex align-items-center" placeholder="Quantity" type="number" required name="quantity" />
+                <input className="form-field d-flex align-items-center" placeholder="Photo URL" type="text" required name="img" />
+                <input type="submit" className="btn mt-3" value="Add Item" />
             </form>
         </div>
     );
 };
 
 export default AddItem;
+

@@ -7,6 +7,7 @@ import Loading from '../../Shared/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -41,12 +42,28 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
-    const handleUserLogin = (event) => {
+    const handleUserLogin = async (event) => {
         event.preventDefault();
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post('http://localhost:5000/login', { email });
+        console.log(data);
+        localStorage.setItem('accessToken', data.accessToken);
+        navigate(from, { replace: true });
+        // const url = `http://localhost:5000/login`;
+        // const {data} = await fetch(url,{
+        //     method: "POST",
+        //     headers: {
+        //         'content-type': 'application/json',
+        //     },
+        //     body: JSON.stringify(email)
+        // })
+        // .then(res => res.json())
+        // .then(info => {
+        //     console.log(info);
+        // })
 
-        console.log(email);
-        console.log(password);
+        // console.log(email);
+        // console.log(password);
     }
     if (loading || sending) {
         return <Loading></Loading>
@@ -56,7 +73,7 @@ const Login = () => {
         errorMessage = <p className='text-danger'>Error: {error?.message}</p>
     }
     if (user) {
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     }
 
     const navigateRegister = () => {
@@ -76,9 +93,6 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control onBlur={handlePasswordBlur} type="password" name='password' placeholder="Password" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
                     <Button variant="outline-primary rounded-pill mx-auto d-block w-50" type="submit">
                         Login

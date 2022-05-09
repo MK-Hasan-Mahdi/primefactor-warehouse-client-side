@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 
 const InventoryDetail = () => {
     const { inventoryId } = useParams();
-    console.log(inventoryId);
+    // console.log(inventoryId);
     const [inventory, setInventory] = useState({});
     const { _id, name, description, price, quantity, img } = inventory;
     useEffect(() => {
         const url = `http://localhost:5000/inventory/${inventoryId}`
-        console.log(url);
+        // console.log(url);
         fetch(url)
             .then(res => res.json())
             .then(data => setInventory(data))

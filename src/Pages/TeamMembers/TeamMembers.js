@@ -4,9 +4,9 @@ import team1 from '../../images/team/team-1.jpg';
 import team2 from '../../images/team/team-2.png';
 import team3 from '../../images/team/team-3.jpg';
 import team4 from '../../images/team/team-4.png';
-import { SiTwitter } from 'react-icons/si'
-import { FaFacebookF } from 'react-icons/fa'
-import { SiLinkedin } from 'react-icons/si'
+import { SiTwitter } from 'react-icons/si';
+import { FaFacebookF } from 'react-icons/fa';
+import { SiLinkedin } from 'react-icons/si';
 
 
 const TeamMembers = () => {
@@ -16,7 +16,7 @@ const TeamMembers = () => {
                 <div className="container-fluid">
 
                     <div className="section-title text-center m-5">
-                        <h3>Our Team</h3>
+                        <h1>OUR TEAM</h1>
                         <p>Get Exceptional Service For Growth Improve Your Investment Primefactor Warehouse Management System</p>
                     </div>
 

@@ -1,15 +1,19 @@
-.about .icon-boxes h3 {
+/* .back-color-services {
+    background-color: lavender;
+} */
+
+.ourServices .icon-boxes h3 {
     font-size: 28px;
     font-weight: 700;
     color: #394047;
     margin-bottom: 15px;
 }
 
-.about .icon-box {
+.ourServices .icon-box {
     margin-top: 40px;
 }
 
-.about .icon-box .icon {
+.ourServices .icon-box .icon {
     float: left;
     display: flex;
     align-items: center;
@@ -21,38 +25,49 @@
     transition: 0.5s;
 }
 
-.about .icon-box .icon i {
+.ourServices .icon-box .icon i {
     color: #428bca;
     font-size: 32px;
 }
 
-.about .icon-box:hover .icon {
+.ourServices .icon-box:hover .icon {
     background: #428bca;
     border-color: #428bca;
 }
 
-.about .icon-box:hover .icon i {
+.ourServices .icon-box:hover .icon i {
     color: #fff;
 }
 
-.about .icon-box .title {
+.ourServices .icon-box .title {
     margin-left: 85px;
     font-weight: 700;
     margin-bottom: 10px;
     font-size: 18px;
 }
 
-.about .icon-box .title a {
+.ourServices .icon-box .title a {
     color: #343a40;
     transition: 0.3s;
 }
 
-.about .icon-box .title a:hover {
+.ourServices .icon-box .title a:hover {
     color: #428bca;
 }
 
-.about .icon-box .description {
+.ourServices .icon-box .description {
     margin-left: 85px;
     line-height: 24px;
     font-size: 14px;
+}
+
+@media (max-height: 500px) {
+    .service-box {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .serive-image {
+        width: cover;
+    }
 }
