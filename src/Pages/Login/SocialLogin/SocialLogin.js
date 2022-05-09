@@ -5,7 +5,6 @@ import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import { SiGmail } from 'react-icons/si'
 import { SiGithub } from 'react-icons/si'
-import { Button } from 'react-bootstrap';
 
 
 const SocialLogin = () => {
@@ -31,19 +30,19 @@ const SocialLogin = () => {
         <div>
             <h6 className='text-center'>Continue with others Account</h6>
 
-            <div className='w-50 mx-auto mb-2'>
-                <Button onClick={() => signInWithGoogle()} variant="outline-primary rounded-pill mx-auto d-block" type="submit">
+            <div className='w-50 mx-auto mb-2 d-flex flex-column'>
+                <button onClick={() => signInWithGoogle()} className='btn btn-primary mb-2' type="submit">
                     <div className='d-flex align-items-center justify-content-center'>
                         <span className='px-2'><SiGmail></SiGmail></span>
                         <span>Login with Gmail</span>
                     </div>
-                </Button>
-                <Button onClick={() => signInWithGithub()} variant="outline-primary rounded-pill mx-auto d-block my-2" type="submit">
+                </button>
+                <button onClick={() => signInWithGithub()} className='btn btn-primary' type="submit">
                     <div className='d-flex align-items-center justify-content-center'>
                         <span className='px-2'><SiGithub></SiGithub></span>
                         <span>Login with Github</span>
                     </div>
-                </Button>
+                </button>
                 {errorMessage}
             </div>
         </div>

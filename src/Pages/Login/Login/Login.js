@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -49,21 +48,7 @@ const Login = () => {
         console.log(data);
         localStorage.setItem('accessToken', data.accessToken);
         navigate(from, { replace: true });
-        // const url = `https://warm-island-25044.herokuapp.com/login`;
-        // const {data} = await fetch(url,{
-        //     method: "POST",
-        //     headers: {
-        //         'content-type': 'application/json',
-        //     },
-        //     body: JSON.stringify(email)
-        // })
-        // .then(res => res.json())
-        // .then(info => {
-        //     console.log(info);
-        // })
 
-        // console.log(email);
-        // console.log(password);
     }
     if (loading || sending) {
         return <Loading></Loading>
@@ -82,26 +67,34 @@ const Login = () => {
 
     return (
         <div className='container'>
-            <h2 className='text-center'>Please Login</h2>
-            <div className='w-50 mx-auto'>
-                <Form onSubmit={handleUserLogin}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control onBlur={handleEmailBlur} type="email" name='email' placeholder="Enter email" />
-                    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control onBlur={handlePasswordBlur} type="password" name='password' placeholder="Password" />
-                    </Form.Group>
-                    <Button variant="outline-primary rounded-pill mx-auto d-block w-50" type="submit">
-                        Login
-                    </Button>
-                    {errorMessage}
-                </Form>
-                <p>New User? <Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister}>Register Now</Link></p>
-                <p>Forget Password? <button className='btn btn-link text-primary text-decoration-none pe-auto' onClick={resetPassword}>Reset Your Password</button></p>
+            <div className='w-50 mx-auto'>
+                <div>
+                    <h2 className='text-center'>Please Login</h2>
+                    <form onSubmit={handleUserLogin}>
+                        <div className="mb-3 mt-3">
+                            <label for="email">Email:</label>
+                            <input onBlur={handleEmailBlur} type="email" className="form-control" placeholder="Enter email" name="email" required />
+                        </div>
+                        <div className="mb-3">
+                            <label for="pwd">Password:</label>
+                            <input onBlur={handlePasswordBlur} type="password" className="form-control" id="password" placeholder="Enter password" name="password" required />
+                        </div>
+                        {errorMessage}
+                        <div className='text-center'>
+                            <button type="submit" className="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <p>New User? <Link to='/register' className='text-primary text-decoration-none' onClick={navigateRegister}>Register Now</Link></p>
+                    <p>Forget Password? <button className='btn btn-link text-primary text-decoration-none pe-auto' onClick={resetPassword}>Reset Your Password</button></p>
+                </div>
             </div>
+
+
+
+
             <SocialLogin></SocialLogin>
             <ToastContainer />
         </div>

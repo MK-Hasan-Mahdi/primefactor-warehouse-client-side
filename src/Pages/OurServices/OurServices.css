@@ -61,13 +61,13 @@
     font-size: 14px;
 }
 
-@media (max-height: 500px) {
+/* @media (max-height: 500px) {
     .service-box {
         display: grid;
         grid-template-columns: 1fr;
     }
 
-    .serive-image {
+    .service-image {
         width: cover;
     }
-}
+} */

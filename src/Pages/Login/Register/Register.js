@@ -5,25 +5,24 @@ import auth from '../../../firebase.init';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
     const navigate = useNavigate();
 
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, loading] = useCreateUserWithEmailAndPassword(auth);
 
-    const [sendEmailVerification, sending, error2] = useSendEmailVerification(auth);
+    const [sendEmailVerification, sending] = useSendEmailVerification(auth);
     const sendVerifyEmail = async () => {
         await sendEmailVerification(auth.currentUser)
             .then(() => {
-                toast("Verification email sent")
+                toast("Verification email sent");
             })
     }
 
+    if (loading || sending) {
+        <Loading></Loading>
+    }
 
     const handleRegister = async (event) => {
         event.preventDefault();
@@ -31,7 +30,7 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
         if (!name || !email || !password) {
-            alert("please fill up all section")
+            toast("Please fill up all field")
         }
         else {
 
@@ -40,9 +39,6 @@ const Register = () => {
             event.target.reset();
         }
     }
-    // if (user) {
-    //     navigate('/home')
-    // }
 
     const navigateLogin = () => {
         navigate('/login')
@@ -66,10 +62,8 @@ const Register = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name='password' placeholder="Password" />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button variant="primary rounded-pill mx-auto d-block w-50" type="submit">
+
+                    <Button variant="primary mx-auto d-block w-50" type="submit">
                         Register
                     </Button>
                 </Form>
