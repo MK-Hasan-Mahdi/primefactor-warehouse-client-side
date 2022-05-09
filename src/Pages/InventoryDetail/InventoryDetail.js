@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const InventoryDetail = () => {
     const { inventoryId } = useParams();
     // console.log(inventoryId);
     const [inventory, setInventory] = useState({});
-    const { _id, name, description, price, quantity, img } = inventory;
+    const { _id, name, description, price, quantity, supplier, img } = inventory;
     useEffect(() => {
-        const url = `http://localhost:5000/inventory/${inventoryId}`
+        const url = `https://warm-island-25044.herokuapp.com/inventory/${inventoryId}`
         // console.log(url);
         fetch(url)
             .then(res => res.json())
@@ -19,37 +21,44 @@ const InventoryDetail = () => {
     const handleQtyUpdate = event => {
         event.preventDefault();
         const qty = event.target.inputQuantity.value;
-        console.log(qty);
-        const newQuantity = parseInt(inventory.quantity) + parseInt(qty);
-        const newQuantityObj =
-        {
-            name: name,
-            description: description,
-            price: price,
-            quantity: newQuantity,
-            img: img
-        };
-        console.log(newQuantityObj);
-        setInventory(newQuantityObj);
+        // console.log(qty);
+        if (qty <= 0) {
+            toast('give valid qty')
+        }
+        else {
 
-        const url = `http://localhost:5000/inventory/${inventoryId}`
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newQuantityObj)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log('success', data);
-                event.target.reset();
+            const newQuantity = parseInt(inventory.quantity) + parseInt(qty);
+            const newQuantityObj =
+            {
+                name: name,
+                description: description,
+                price: price,
+                quantity: newQuantity,
+                supplier: supplier,
+                img: img
+            };
+            // console.log(newQuantityObj);
+            setInventory(newQuantityObj);
+
+            const url = `https://warm-island-25044.herokuapp.com/inventory/${inventoryId}`
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(newQuantityObj)
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('success', data);
+                    event.target.reset();
+                })
+        }
+        event.target.reset();
     }
 
     // invetory item's stock deliver/shipment
     const handleShippedItem = () => {
-        // console.log('shipped');
         const newInvItemQuantity = quantity - 1;
         const newInventory = {
             name: name,
@@ -60,7 +69,7 @@ const InventoryDetail = () => {
         };
         setInventory(newInventory);
 
-        const url = `http://localhost:5000/inventory/${inventoryId}`
+        const url = `https://warm-island-25044.herokuapp.com/inventory/${inventoryId}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -90,7 +99,7 @@ const InventoryDetail = () => {
                     <ul className="list-group list-group-light list-group-small">
                         <li className="list-group-item px-4"> Price: {inventory.price} </li>
                         <li className="list-group-item px-4"> Quantity: {inventory.quantity} </li>
-                        <li className="list-group-item px-4"> Sold: no </li>
+                        <li className="list-group-item px-4"> Sold:  </li>
                         <li className="list-group-item px-4"> Supplier: {inventory.supplier} </li>
                     </ul>
                     <div className="card-body">

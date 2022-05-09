@@ -22,7 +22,7 @@ const AddItem = () => {
             img: event.target.img.value,
         };
         //<===== UPLOAD CAR ====>
-        const url = `http://localhost:5000/inventory`;
+        const url = `https://warm-island-25044.herokuapp.com/inventory`;
         fetch(url, {
             method: "POST",
             headers: {
@@ -45,7 +45,7 @@ const AddItem = () => {
             quantity: event.target.quantity.value,
             img: event.target.img.value,
         };
-        const myItemurl = `http://localhost:5000/myitem`;
+        const myItemurl = `https://warm-island-25044.herokuapp.com/myitem`;
         fetch(myItemurl, {
             method: "POST",
             headers: {
