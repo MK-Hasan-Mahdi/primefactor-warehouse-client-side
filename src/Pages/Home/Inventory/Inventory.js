@@ -13,11 +13,11 @@ const Inventory = ({ inventory }) => {
             <div className="card h-100">
                 <div className="card-body py-3">
                     <img src={img} className="card-img-top card-image w-100 rounded-3" alt="..."></img>
-                    <h5 className="card-title">{name}</h5>
+                    <h5 className="card-title py-2">{name}</h5>
                     <p className="card-text">{description}</p>
-                    <p className="card-text">Price: {price}</p>
-                    <p className="card-text">Quantity: {quantity}</p>
-                    <p className="card-text">Supplier: {supplier}</p>
+                    <p className="card-text fw-bold">Price: {price}</p>
+                    <p className="card-text fw-bold">Quantity: {quantity}</p>
+                    <p className="card-text fw-bold">Supplier: {supplier}</p>
                 </div>
                 <div className='d-flex flex-column justify-content-center'>
                     <button onClick={() => navigateToInventoryDetail(_id)} className='btn-get-started rounded-3 py-2 my-1 buy-btn'>Manage</button>
